@@ -1,32 +1,44 @@
 <script>
   import logo from './assets/svelte.png'
   import './lib/TailwindCSS.svelte'
+  import Footer from './components/Footer.svelte'
+  import TopBanner from './components/TopBanner.svelte'
+  import Header from './components/Header.svelte'
+  import Home from './pages/Home.svelte'
+  import Products from './pages/Products.svelte'
+  import Page404 from './Page404.svelte'
+  import Router from 'svelte-spa-router'
+
+
+  const routes = {
+    '/': Home,
+    '/products': Products,
+    '*': Page404
+  }
+
 </script>
 
-<main>
-  <img class="mx-auto" src={logo} alt="Svelte Logo" />
-  <h1>Hello world!</h1>
+<main class="text-offblack flex flex-col min-h-screen">
+  <TopBanner/>
+  <Header/>
+  <div class="flex-grow" style="min-height:1400px">
+        <Router {routes} restoreScrollState={true} />
+  </div>
 
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
+  <div>
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
+    <Footer/>
+  </div>
+
 </main>
-
 <style>
   :root {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   main {
     text-align: center;
-    padding: 1em;
     margin: 0 auto;
   }
 
